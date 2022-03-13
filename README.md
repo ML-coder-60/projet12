@@ -74,7 +74,7 @@ GRANT ALL PRIVILEGES ON DATABASE epic_events TO psql_django_account;
 ```python
 DATABASES = {
    'default': {
-       'ENGINE': 'django.db.backends.postgresql',
+       'ENGINE': 'django.db.backends.postgresql_psycopg2',
        'NAME': 'epic_events',
        'USER': 'psql_django_account',
        'PASSWORD': 'unmotdepasse',
@@ -84,20 +84,20 @@ DATABASES = {
 }
 ```
 
-6. Apply the migrations to the database and create a superuser
+6. Appliquer les migrations en base et créer  un compte administrateur
 
 ```shell
 python manage.py migrate
 python manage.py createsuperuser
 ```
 
-5. Run the server
+7. Démarrer l'application 
 
 ```shell
 $ python manage.py runserver
 ```
  
-6. Administration
+8. Administration
 
 ___
     Seuls les membres de l'équipe de gestion ont accès 
