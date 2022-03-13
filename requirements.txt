@@ -1,0 +1,8 @@
+Django
+djangorestframework
+djangorestframework-simplejwt
+pytest
+pytest-django
+psycopg2
+flake8
+flake8-html
