@@ -16,6 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from authentication.views import ChangePasswordView
+from django.views.generic import RedirectView
+from rest_framework_simplejwt.views import TokenObtainPairView
+
+
 urlpatterns = [
     path('gestion/', admin.site.urls),
+    path('change-password/', ChangePasswordView.as_view(), name='change-password'),
+    path('', RedirectView.as_view(url='login/')),
+    path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
 ]
