@@ -57,7 +57,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     class Team(models.TextChoices):
         GESTION = 'Gestion'
-        VENTE = 'Vente'
+        COMMERCIAL = 'Commercial'
         SUPPORT = 'Support'
 
     username = models.CharField(

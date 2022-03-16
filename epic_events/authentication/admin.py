@@ -31,7 +31,7 @@ class UserAdmin(BaseUserAdmin):
     add_form = UserCreationForm
 
     list_display = ('username', 'team', 'is_active')
-    list_filter = ('username', 'team', 'is_active')
+    list_filter = ('team', 'is_active')
 
     search_fields = ("username",)
     ordering = ("username",)

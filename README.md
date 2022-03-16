@@ -102,9 +102,21 @@ $ python manage.py runserver
 ___
     Seuls les membres de l'équipe de gestion ont accès 
     à la console d'administration de l'application.
+
+    C'est interface permet de gérer les comptes , les clients, les contracts, les événements
+    Le changement des mots de passe est a réaliser par les utilisateurs  depuis API 
 ___
 
 La page d'administration est disponible depuis 
     
     http://127.0.0.1:8080/gestion/
+
+
+
+9. API Epic Events
+
+|  #  | Points de terminaison de l'API Epic Events            |  HTTP Method | URI                  |
+|:---:|-------------------------------------------------------|:------------:|:---------------------|
+|  1. | Connexion des utilisateurs (Token )                   |     POST     | /login/              |
+|  2. | Modifier le mot de passe de l'utilisateur authentifié |     POST     | /change-password/    |
 
