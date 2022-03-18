@@ -7,7 +7,7 @@ from authentication.models import User
 
 class Client(models.Model):
 
-    name = models.CharField(max_length=250, primary_key=True, verbose_name='Societé')
+    name = models.CharField(max_length=250, unique=True, null=False, blank=False, verbose_name='Societé')
 
     sales_user = models.ForeignKey(
         User,
@@ -21,12 +21,12 @@ class Client(models.Model):
         null=True,
         blank=True
     )
-    email = models.EmailField(blank=False, verbose_name='Adresse électronique')
+    email = models.EmailField(blank=False, unique=True, null=False, verbose_name='Adresse électronique')
     last_name = models.CharField(max_length=25, blank=False, verbose_name='Nom')
-    first_name = models.CharField(max_length=25, blank=True, verbose_name='Prénom')
+    first_name = models.CharField(max_length=25, blank=False, verbose_name='Prénom')
     phone = models.CharField(max_length=20, blank=True, verbose_name='Numéro de téléphone')
     mobile = models.CharField(max_length=20, blank=True, verbose_name='Numéro de téléphone portable')
-    confirmed = models.BooleanField(default=False, verbose_name='Client')
+    confirmed = models.BooleanField(default=False, verbose_name='Client confirmé')
     date_created = models.DateTimeField(auto_now_add=True, verbose_name='Date de création')
     date_updated = models.DateTimeField(auto_now=True, verbose_name='Date de mise à jour')
 
