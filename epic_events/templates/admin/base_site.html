@@ -5,6 +5,7 @@
     <a href="{% url 'admin:index' %}">
     <h1 id="site-name">
         <img alt="logo" src="{% static 'images/epic_events.png' %}" style="height: 2.5em; margin-right: 0.5em;">
+        <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.ico' %}"/>
         {{ site_header|default:_('Django administration') }}
     </h1>
     </a>
