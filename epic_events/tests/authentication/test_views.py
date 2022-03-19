@@ -83,7 +83,6 @@ class TestLoginToken(TestCase):
     def test_login_user_token(self):
         self.create_user()
         client = Client()
-        client.login(username=self.username, password=self.password)
 
         url = '/login/'
         resp = client.post(url, {'username': self.username, 'password': self.password})
@@ -92,7 +91,6 @@ class TestLoginToken(TestCase):
     def test_login_super_user_token(self):
         self.create_user()
         client = Client()
-        client.login(username=self.username, password=self.password)
 
         url = '/login/'
         resp = client.post(url, {'username': self.username, 'password': self.password})
@@ -101,7 +99,6 @@ class TestLoginToken(TestCase):
     def test_login_user_pass_ko(self):
         self.create_user()
         client = Client()
-        client.login(username=self.username, password=self.password)
 
         url = '/login/'
         resp = client.post(url, {'username': self.username, 'password': 'mdp'})
@@ -110,7 +107,6 @@ class TestLoginToken(TestCase):
     def test_change_password_password_ko(self):
         self.create_user()
         client = Client()
-        client.login(username=self.username, password=self.password)
 
         url = '/login/'
         resp = client.post(url, {'username': self.username, 'password': 'mdp'})
@@ -119,7 +115,6 @@ class TestLoginToken(TestCase):
     def test_change_password_password_ok(self):
         self.create_user()
         client = Client()
-        client.login(username=self.username, password=self.password)
 
         url = '/login/'
         resp = client.post(url, {'username': self.username, 'password': 'mdp'})

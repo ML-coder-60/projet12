@@ -9,6 +9,7 @@
 # Projet12
 Développez une architecture back-end sécurisée en utilisant Django ORM
 
+_Testé sous Debian 11 - Python 3.9.2 - Django 4.0.3 - DRF 3.13.1 - simplejwt 5.1.0_
 
 ## Installation
 
@@ -115,8 +116,17 @@ La page d'administration est disponible depuis
 
 9. API Epic Events
 
-|  #  | Points de terminaison de l'API Epic Events            |  HTTP Method | URI                  |
-|:---:|-------------------------------------------------------|:------------:|:---------------------|
-|  1. | Connexion des utilisateurs (Token )                   |     POST     | /login/              |
-|  2. | Modifier le mot de passe de l'utilisateur authentifié |     POST     | /change-password/    |
+Le détail des points d'entrées ce trouve ici =>  
 
+### Liste de points d'entrées
+
+|  #  | Points de terminaison de l'API Epic Events             |  HTTP Method | URI   {example}           |
+|:---:|--------------------------------------------------------|:------------:|:--------------------------|
+|  1. | Connexion des utilisateurs (Token )                    |     POST     | /login/                   |
+|  2. | Modifier le mot de passe de l'utilisateur authentifié  |     POST     | /change-password/         |
+|  3. | Lister les clients                                     |     GET      | /clients/                 |
+|  4. | Lister des clients par recherche                       |     GET      | /clients/?search={str}    |
+|  5. | Lister des clients par filtre                          |     GET      | /clients/?confirmed=false |
+|  6. | Détail d'un client                                     |     GET      | /clients/{id_du_client}   |
+|  7. | Créer un client                                        |     POST     | /clients                  |
+|  8. | Modifier un client                                     |     PUT      | /clients/{id_du_client}   |

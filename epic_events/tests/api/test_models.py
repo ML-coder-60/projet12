@@ -1,5 +1,5 @@
 import pytest
-from api.models import Client, Contract,Event
+from api.models import Client, Contract, Event
 
 
 class TestClient:
@@ -49,37 +49,40 @@ class TestContract:
         client = Client.objects.create(**client_test)
         client.save()
 
+        contract_test['client_id'] = client.id
+
         contract = Contract.objects.create(**contract_test)
         contract.save()
 
         expected_value = "1-"+str(client_test['name'])
         assert str(contract) == expected_value
 
-        contract = Contract.objects.get(client_id=client_test['name'])
-        assert contract.id == 1
+        contract = Contract.objects.get(amount=contract_test['amount'])
         assert contract.signed is False
         assert contract.amount == float(contract_test['amount'])
-        assert contract.client_id == client_test['name']
+        assert contract.client_id == client.id
 
 
 class TestEvent:
     """
-    Class to test Event creation
+     Class to test Event creation
 
-    Methods
-    -------
-    Create client_test and
-    Create contract_test and
-    test_create_contract(self):
-        creates contract with valid arguments
-        check data
-    """
+     Methods
+     -------
+     Create client_test and
+     Create contract_test and
+     test_create_contract(self):
+         creates contract with valid arguments
+         check data
+     """
 
     @pytest.mark.django_db
     def test_create_event(self, client_test, contract_test, event_test):
 
         client = Client.objects.create(**client_test)
         client.save()
+
+        contract_test['client_id'] = client.id
 
         contract = Contract.objects.create(**contract_test)
         contract.save()

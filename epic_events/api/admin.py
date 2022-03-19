@@ -1,8 +1,4 @@
 from django.contrib import admin
-
-# Register your models here.
-
-
 from .models import Client, Event, Contract
 
 
@@ -13,6 +9,7 @@ class ClientAdmin(admin.ModelAdmin):
                 Includes required fields:
                   'name',
                   'last_name',
+                  'first_name',
                   'email',
             list/set users
                 Includes fields:
@@ -31,6 +28,7 @@ class ClientAdmin(admin.ModelAdmin):
     ordering = ("name",)
 
     fieldsets = (
+        (None, {'fields': ('name',)}),
         ('Informations', {'fields': ('email', 'last_name', 'first_name', 'phone', 'mobile',)}),
         ('Status du client', {'fields': ('confirmed',)}),
         ("Contact de l'équipe Commercial", {'fields': ('sales_user',)}),

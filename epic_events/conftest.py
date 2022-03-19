@@ -25,6 +25,12 @@ def user_support():
 
 
 @pytest.fixture()
+def user_commercial():
+    user = {'username': USER, 'password': PASS_USER, 'team': 'Commercial'}
+    return user
+
+
+@pytest.fixture()
 def client_test():
     client = {'name': 'Client_Test', 'email': 'test@test.local', 'last_name': 'Dupond'}
     return client
@@ -32,7 +38,12 @@ def client_test():
 
 @pytest.fixture()
 def contract_test():
-    contract = {'amount': '7123.13', 'payment_due': '2022-03-17', 'client_id': 'Client_Test'}
+    contract = {'signed': False,
+                'amount': '7123.13',
+                'date_created': '2022-03-15',
+                'date_updated': '2022-03-16',
+                'payment_due': '2022-03-17'
+                }
     return contract
 
 
