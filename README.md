@@ -130,3 +130,12 @@ Le détail des points d'entrées ce trouve ici =>
 |  6. | Détail d'un client                                     |     GET      | /clients/{id_du_client}   |
 |  7. | Créer un client                                        |     POST     | /clients                  |
 |  8. | Modifier un client                                     |     PUT      | /clients/{id_du_client}   |
+|  9. | Lister des contrats                                    |     GET      | /contracts/               |
+| 10. | Détail d'un contrat                                    |     GET      | /contracts/{id_du_contrat}|
+| 11. | Créer un contrat                                       |     POST     | /contracts/               |
+| 12. | Modifier un contrat                                    |     PUT      | /contracts/{id_du_contrat}|
+| 13. | Lister les événements                                  |     GET      | /events/                  |
+| 14. | Détail d'un événement                                  |     GET      | /events/{id_events}       |
+| 15. | Modifier un événement                                  |     PUT      | /events/{id_events}       |
+
+

@@ -4,8 +4,6 @@ from .models import User
 from .forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
-# Register your models here.
-
 
 class UserAdmin(BaseUserAdmin):
     """

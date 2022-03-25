@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-3t=w(3kt3e=8!aqs0i7-7h$f=f1=w^gla7$lmf7rjm@$7^m(7=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -38,12 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'authentication',
+
     'epic_events',
     'rest_framework',
     'rest_framework.authtoken',
     'rest_framework_simplejwt',
     'api',
+    'authentication',
     'django_filters',
 ]
 
@@ -142,10 +143,14 @@ REST_FRAMEWORK = {
         'django_filters.rest_framework.DjangoFilterBackend'
         ],
     'PAGE_SIZE': 10,
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
     )
 }
 

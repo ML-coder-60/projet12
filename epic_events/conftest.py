@@ -32,7 +32,12 @@ def user_commercial():
 
 @pytest.fixture()
 def client_test():
-    client = {'name': 'Client_Test', 'email': 'test@test.local', 'last_name': 'Dupond'}
+    client = {
+        'name': 'Client_Test',
+        'email': 'test@test.local',
+        'last_name': 'Dupond',
+        'confirmed': False
+    }
     return client
 
 

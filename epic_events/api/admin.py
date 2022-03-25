@@ -4,27 +4,14 @@ from .models import Client, Event, Contract
 
 class ClientAdmin(admin.ModelAdmin):
     """
-        A form for :
-            creating new clients.
-                Includes required fields:
-                  'name',
-                  'last_name',
-                  'first_name',
-                  'email',
-            list/set users
-                Includes fields:
-                  'name',
-                  'sales_user'
-                  'client_confirmed',
-            Filter users by:
-                  'name',
-                  'confirmed'
+        Manage Client Admin Django
     """
 
     list_display = ('name', 'sales_user', 'confirmed')
+    list_editable = ('confirmed',)
     list_filter = ('sales_user', 'confirmed')
 
-    search_fields = ("name",)
+    # search_fields = ("name",)
     ordering = ("name",)
 
     fieldsets = (
@@ -44,37 +31,22 @@ class ClientAdmin(admin.ModelAdmin):
 
 class ContractAdmin(admin.ModelAdmin):
     """
-        A form for :
-            creating new contract.
-                Includes required fields:
-                  'client',
-                  'signed',
-                  'amount',
-                  'payment_due',
-            list/set users
-                Includes fields:
-                  'Contract_name',
-                  'client',
-                  'amount',
-                  'signed',
-                  'payment_due'
-            Filter users by:
-                  'client',
-                  'signed',
-                  'payment_due'
+        Manage Contract Admin Django
     """
 
-    list_display = ('contrat', 'client', 'signed', 'amount', 'payment_due')
-    list_filter = ('client', 'signed', 'payment_due')
+    list_display = ('numero_contrats', 'client', 'sales_user', 'signed', 'amount', 'payment_due')
+    list_editable = ('signed',)
+    list_filter = ('client', 'signed', 'payment_due', )
 
     @staticmethod
-    def contrat(obj):
-        return obj
+    def numero_contrats(contract):
+        return contract
 
-    ordering = ("id",)
+    # search_fields = ('id',)
+    ordering = ('id',)
 
     fieldsets = (
-        ('Informations', {'fields': ('amount', 'payment_due',)}),
+        ('Informations', {'fields': ('amount', 'payment_due')}),
         ('Status du contract', {'fields': ('signed',)}),
         ("Nom du client", {'fields': ('client',)}),
     )
@@ -89,45 +61,36 @@ class ContractAdmin(admin.ModelAdmin):
 
 class EventAdmin(admin.ModelAdmin):
     """
-        A form for :
-            creating new Event.
-                Includes required fields:
-                  'contract',
-                  'attendees',
-                  'event_date',
-                  'notes'
-            list/set users
-                Includes fields:
-                  'client_name',
-                  'amount',
-                  'signed',
-                  'payment_due'
-            Filter users by:
-                  'signed',
-                  'amount',
-                  'payment_due'
+        Manage Event Admin Django
     """
 
-    list_display = ('contract', 'event_date', 'attendees', 'completed', 'support_user')
-    list_filter = ('completed', 'support_user', 'attendees')
-    ordering = ("event_date",)
+    list_display = ('numero_contrats', 'event_date', 'societe', 'attendees', 'ended', 'support_user', )
+    list_editable = ('ended',)
+    list_filter = ('ended', 'support_user', 'event_date')
+
+    # search_fields = ('event_date',)
+    ordering = ('event_date',)
 
     fieldsets = (
-        ('Informations', {'fields': ('contract', 'event_date', 'attendees')}),
-        ("Status de l'événement", {'fields': ('completed',)}),
+        ('Informations', {'fields': ('contract', 'event_date', 'attendees', 'support_user')}),
+        ("Status de l'événement", {'fields': ('ended',)}),
         ("Détail de l'événement", {'fields': ('notes',)}),
     )
 
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('contract', 'client', 'event_date', 'attendees', 'completed', 'support_user', 'notes'),
+            'fields': ('contract', 'event_date', 'attendees', 'ended', 'support_user', 'notes'),
         }),
     )
 
     @staticmethod
-    def client(obj):
-        return str(obj).split('-')[1]
+    def numero_contrats(event):
+        return event
+
+    @staticmethod
+    def societe(event):
+        return event.contract.client
 
 
 admin.site.register(Client, ClientAdmin)

@@ -5,8 +5,6 @@ from django.contrib.auth.models import (
     BaseUserManager
 )
 
-# Create your models here.
-
 
 class UserManager(BaseUserManager):
 
@@ -83,3 +81,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = []
 
     objects = UserManager()
+
+    def __str__(self):
+        return f"{self.username}"

@@ -1,6 +1,6 @@
 import pytest
 from api.models import Client, Contract, Event
-
+from authentication.models import User
 
 class TestClient:
     """
@@ -14,8 +14,10 @@ class TestClient:
     """
 
     @pytest.mark.django_db
-    def test_create_client(self, client_test):
+    def test_create_client(self, client_test, user_commercial):
+        user = User.objects.create(**user_commercial)
 
+        client_test['sales_user_id'] = user.id
         client = Client.objects.create(**client_test)
         client.save()
         expected_value = client_test['name']
@@ -28,7 +30,7 @@ class TestClient:
         assert client.first_name == ''
         assert client.phone == ''
         assert client.mobile == ''
-        assert client.sales_user is None
+        assert client.sales_user == user
 
 
 class TestContract:
@@ -44,7 +46,10 @@ class TestContract:
     """
 
     @pytest.mark.django_db
-    def test_create_contract(self, client_test, contract_test):
+    def test_create_contract(self, client_test, contract_test, user_commercial):
+
+        user = User.objects.create(**user_commercial)
+        client_test['sales_user_id'] = user.id
 
         client = Client.objects.create(**client_test)
         client.save()
@@ -54,8 +59,8 @@ class TestContract:
         contract = Contract.objects.create(**contract_test)
         contract.save()
 
-        expected_value = "1-"+str(client_test['name'])
-        assert str(contract) == expected_value
+        expected_value = client.id
+        assert contract.client_id == expected_value
 
         contract = Contract.objects.get(amount=contract_test['amount'])
         assert contract.signed is False
@@ -77,7 +82,10 @@ class TestEvent:
      """
 
     @pytest.mark.django_db
-    def test_create_event(self, client_test, contract_test, event_test):
+    def test_create_event(self, client_test, contract_test, event_test, user_support , user_commercial):
+
+        user = User.objects.create(**user_commercial)
+        client_test['sales_user_id'] = user.id
 
         client = Client.objects.create(**client_test)
         client.save()
@@ -96,6 +104,6 @@ class TestEvent:
         expected_value = contract.id
         assert event.contract_id == expected_value
 
-        assert event.completed is False
+        assert event.ended is False
         assert event.notes == event_test['notes']
         assert event.support_user_id is None

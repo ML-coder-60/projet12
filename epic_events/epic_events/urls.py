@@ -20,7 +20,7 @@ from django.views.generic import RedirectView
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework import routers
 
-from api.views import ClientsViewset
+from api.views import ClientsViewset, ContractsViewset, EventsViewset
 
 
 admin.site.site_title = 'CRM Epic Events'
@@ -29,12 +29,15 @@ admin.site.index_title = 'Administration'
 
 
 router = routers.SimpleRouter()
-router.register('', ClientsViewset, basename='clients')
+router.register('clients', ClientsViewset, basename='clients')
+router.register('contracts', ContractsViewset, basename='Contracts')
+router.register('events', EventsViewset, basename='Events')
 
 urlpatterns = [
     path('gestion/', admin.site.urls),
     path('change-password/', ChangePasswordView.as_view(), name='change-password'),
     path('', RedirectView.as_view(url='login/')),
     path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('clients/', include(router.urls), name='clients'),
+    path('', include(router.urls), name='clients'),
+    path('', include(router.urls), name='contracts'),
 ]
