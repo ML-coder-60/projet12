@@ -125,17 +125,21 @@ Le détail des points d'entrées ce trouve ici =>
 |  1. | Connexion des utilisateurs (Token )                    |     POST     | /login/                   |
 |  2. | Modifier le mot de passe de l'utilisateur authentifié  |     POST     | /change-password/         |
 |  3. | Lister les clients                                     |     GET      | /clients/                 |
-|  4. | Lister des clients par recherche                       |     GET      | /clients/?search={str}    |
-|  5. | Lister des clients par filtre                          |     GET      | /clients/?confirmed=false |
+|  4. | Lister des clients par recherche*                      |     GET      | /clients/?search={str}    |
+|  5. | Lister des clients par {filtre}*                       |     GET      | /clients/?{filtre}=value  |
 |  6. | Détail d'un client                                     |     GET      | /clients/{id_du_client}   |
 |  7. | Créer un client                                        |     POST     | /clients                  |
 |  8. | Modifier un client                                     |     PUT      | /clients/{id_du_client}   |
 |  9. | Lister des contrats                                    |     GET      | /contracts/               |
-| 10. | Détail d'un contrat                                    |     GET      | /contracts/{id_du_contrat}|
-| 11. | Créer un contrat                                       |     POST     | /contracts/               |
-| 12. | Modifier un contrat                                    |     PUT      | /contracts/{id_du_contrat}|
+| 10. | Lister des contrats par recherche*                     |     GET      | /contracts/?search={str}  |
+| 11. | Lister des contrats par {filtre}*                      |     GET      | /contracts/?{filtre}=value|
+| 12. | Détail d'un contrat                                    |     GET      | /contracts/{id_du_contrat}|
+| 13. | Créer un contrat                                       |     POST     | /contracts/               |
+| 14. | Modifier un contrat                                    |     PUT      | /contracts/{id_du_contrat}|
 | 13. | Lister les événements                                  |     GET      | /events/                  |
-| 14. | Détail d'un événement                                  |     GET      | /events/{id_events}       |
-| 15. | Modifier un événement                                  |     PUT      | /events/{id_events}       |
+| 14. | Lister des événements par recherche*                   |     GET      | /events/?search={str}     |
+| 15. | Lister des événements par {filtre}*                    |     GET      | /events/?{filtre}=value   |
+| 16. | Détail d'un événement                                  |     GET      | /events/{id_events}       |
+| 17. | Modifier un événement                                  |     PUT      | /events/{id_events}       |
 
-
+* Pour des informations complémentaires merci de consulter la [documentation](https://documenter.getpostman.com/view/19223491/UVsJx7ga)   

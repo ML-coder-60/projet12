@@ -11,7 +11,7 @@ class ClientAdmin(admin.ModelAdmin):
     list_editable = ('confirmed',)
     list_filter = ('sales_user', 'confirmed')
 
-    # search_fields = ("name",)
+    search_fields = ('name', 'sales_user_id__username')
     ordering = ("name",)
 
     fieldsets = (
@@ -34,15 +34,15 @@ class ContractAdmin(admin.ModelAdmin):
         Manage Contract Admin Django
     """
 
-    list_display = ('numero_contrats', 'client', 'sales_user', 'signed', 'amount', 'payment_due')
+    list_display = ('numero_contrats', 'client', 'sales_user_username', 'signed', 'amount', 'payment_due')
     list_editable = ('signed',)
-    list_filter = ('client', 'signed', 'payment_due', )
+    list_filter = ('client__name', 'signed', 'payment_due')
 
     @staticmethod
     def numero_contrats(contract):
         return contract
 
-    # search_fields = ('id',)
+    search_fields = ('id', 'client__name', 'client__sales_user_id__username', 'amount', 'payment_due')
     ordering = ('id',)
 
     fieldsets = (
@@ -68,7 +68,7 @@ class EventAdmin(admin.ModelAdmin):
     list_editable = ('ended',)
     list_filter = ('ended', 'support_user', 'event_date')
 
-    # search_fields = ('event_date',)
+    search_fields = ('event_date', 'attendees', 'support_user__username', 'contract__client__name', 'contract__id')
     ordering = ('event_date',)
 
     fieldsets = (

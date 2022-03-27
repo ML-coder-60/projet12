@@ -2,6 +2,7 @@ import pytest
 from api.models import Client, Contract, Event
 from authentication.models import User
 
+
 class TestClient:
     """
     Class to test client creation
@@ -82,7 +83,7 @@ class TestEvent:
      """
 
     @pytest.mark.django_db
-    def test_create_event(self, client_test, contract_test, event_test, user_support , user_commercial):
+    def test_create_event(self, client_test, contract_test, event_test, user_support, user_commercial):
 
         user = User.objects.create(**user_commercial)
         client_test['sales_user_id'] = user.id

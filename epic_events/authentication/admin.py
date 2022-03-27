@@ -48,6 +48,9 @@ class UserAdmin(BaseUserAdmin):
         }),
     )
 
+    def __str__(self):
+        return f'{self.username}'
+
 
 admin.site.register(User, UserAdmin)
 

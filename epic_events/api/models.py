@@ -4,6 +4,7 @@ from authentication.models import User
 
 
 class Client(models.Model):
+
     phone_regex = RegexValidator(
         regex=r'^\+?1?\d{9,15}$',
         message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed."
@@ -54,6 +55,9 @@ class Client(models.Model):
     def __str__(self):
         return f'{self.name}'
 
+    def sales_user_username(self):
+        return f'{self.sales_user.username}'
+
 
 class Contract(models.Model):
 
@@ -81,13 +85,16 @@ class Contract(models.Model):
     def __str__(self):
         return f'{self.id}'
 
-    #def client_name(self):
-    #    return f'{self.client}'
+    def client_name(self):
+        return f'{self.client.name}'
 
-    def sales_user(self):
+    def sales_user_id(self):
+        return f'{self.client.sales_user_id}'
+
+    def sales_user_username(self):
         return f'{self.client.sales_user}'
 
-    sales_user.short_description = "Contact Commercial"
+    sales_user_username.short_description = "Contact Commercial"
 
 
 class Event(models.Model):
@@ -122,5 +129,11 @@ class Event(models.Model):
     def __str__(self):
         return f"{self.contract}"
 
-    def client(self):
+    def client_name(self):
         return f"{self.contract.client.name}"
+
+    def client_id(self):
+        return f"{self.contract.client_id}"
+
+    def support_user_username(self):
+        return f"{self.support_user.username}"

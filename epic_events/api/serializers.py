@@ -1,18 +1,6 @@
 from rest_framework import serializers
 from .models import Client, Contract, Event
-from authentication.models import User
 import datetime
-
-
-class UserSerializer(serializers.ModelSerializer):
-    """
-        Serializer account.
-    """
-    class Meta:
-        model = User
-        fields = ['id', 'username']
-
-        read_only_fields = ['id', 'username']
 
 
 class ContractsSerializer(serializers.ModelSerializer):
@@ -24,7 +12,9 @@ class ContractsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Contract
         fields = [
-            'id', 'sales_user', 'client_id', 'signed', 'amount', 'payment_due']
+            'id', 'sales_user_id', 'sales_user_username', 'client_id',
+            'client_name', 'signed', 'amount', 'payment_due'
+        ]
 
     @staticmethod
     def validate_payment_due(value):
@@ -45,17 +35,30 @@ class ClientsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Client
         fields = [
-                     'id', 'name', 'email', 'first_name', 'last_name',
-                     'phone', 'mobile', 'confirmed', 'date_created',
-                     'date_updated', 'sales_user_id'
+                    'id', 'name', 'email', 'first_name', 'last_name',
+                    'phone', 'mobile', 'confirmed', 'sales_user_id',
+                    'sales_user_username'
                      ]
+
+
+class ClientsDetailSerializer(serializers.ModelSerializer):
+    """
+        Serializer Detail Client.
+    """
+
+    class Meta:
+        model = Client
+        fields = [
+            'id', 'name', 'email', 'first_name', 'last_name',
+            'phone', 'mobile', 'confirmed', 'date_created',
+            'date_updated', 'sales_user_id', 'sales_user_username'
+            ]
 
 
 class EventsSerializer(serializers.ModelSerializer):
     """
         Serializer Event.
         check date
-        check status ended
     """
 
     client = ClientsSerializer
@@ -63,8 +66,8 @@ class EventsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
         fields = [
-            'contract_id', 'attendees', 'event_date', 'ended', 'support_user_id',
-            'client', 'notes'
+            'contract_id', 'attendees', 'event_date', 'ended', 'support_user_id', 'support_user_username',
+            'client_id', 'client_name'
                  ]
 
     @staticmethod
@@ -89,26 +92,9 @@ class ContractsDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Contract
         fields = [
-            'id', 'sales_user', 'client', 'signed', 'amount', 'payment_due',
+            'id', 'sales_user_id', 'sales_user_username', 'client', 'signed', 'amount', 'payment_due',
             'date_created', 'date_updated',
         ]
-
-
-class ClientsDetailSerializer(serializers.ModelSerializer):
-    """
-        Serializer Detail Client.
-    """
-
-    sales_user = UserSerializer()
-    contracts = ContractsSerializer(many=True, read_only=True)
-
-    class Meta:
-        model = Client
-        fields = [
-            'id', 'name', 'email', 'first_name', 'last_name',
-            'phone', 'mobile', 'confirmed', 'date_created',
-            'date_updated', 'sales_user', 'contracts'
-            ]
 
 
 class EventsDetailSerializer(serializers.ModelSerializer):
@@ -121,6 +107,6 @@ class EventsDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
         fields = [
-            'contract_id', 'contract', 'attendees', 'event_date', 'ended', 'support_user_id',
-            'client', 'notes', 'date_created', 'date_updated'
+            'attendees', 'event_date', 'ended', 'support_user_id', 'support_user_username',
+            'notes', 'date_created', 'date_updated', 'contract'
                  ]
