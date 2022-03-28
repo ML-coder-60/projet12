@@ -50,7 +50,7 @@ CREATE DATABASE  epic_events;
 
 4.2 Configurer un compte de connexion 'psql_django_account'  
 
-4.2.1 Creation du compte
+4.2.1 Création du compte
 ```shell
 CREATE USER psql_django_account WITH ENCRYPTED PASSWORD 'unmotdepasse';
 ```
@@ -70,7 +70,7 @@ ALTER USER psql_django_account CREATEDB;
 GRANT ALL PRIVILEGES ON DATABASE epic_events TO psql_django_account;
 ```
 
-5. Modifier le fichier setting.py «Paramètres de connexions SQL» pour être conforme à la configuration postgre
+5. Modifier le fichier setting.py «Paramètres de connexions SQL» pour être conforme à la configuration postgres
 
 ```python
 DATABASES = {
@@ -142,4 +142,20 @@ Le détail des points d'entrées ce trouve ici =>
 | 16. | Détail d'un événement                                  |     GET      | /events/{id_events}       |
 | 17. | Modifier un événement                                  |     PUT      | /events/{id_events}       |
 
-* Pour des informations complémentaires merci de consulter la [documentation](https://documenter.getpostman.com/view/19223491/UVsJx7ga)   
+* Pour des informations complémentaires merci de consulter la [documentation](https://documenter.getpostman.com/view/19223491/UVsJx7ga)
+
+10. Logs
+
+les événements de l'application sont loggés dans 2 fichiers     
+
+epic_event_access.log:
+
+        niveau du log : info   
+
+epic_event_error.log: 
+
+        niveau du log: warning  
+
+information sur  le  [niveau des logs](https://docs.djangoproject.com/fr/4.0/topics/logging/)
+
+

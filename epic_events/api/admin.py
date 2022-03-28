@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import Client, Event, Contract
+from rest_framework.authtoken.models import TokenProxy
 
 
 class ClientAdmin(admin.ModelAdmin):
@@ -96,3 +97,4 @@ class EventAdmin(admin.ModelAdmin):
 admin.site.register(Client, ClientAdmin)
 admin.site.register(Event, EventAdmin)
 admin.site.register(Contract, ContractAdmin)
+admin.site.unregister(TokenProxy)
