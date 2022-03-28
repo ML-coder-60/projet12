@@ -146,17 +146,12 @@ Le détail des points d'entrées ce trouve ici =>
 
 10. Logs
 
-Les événements de l'application sont loggés dans 2 fichiers     
+Les événements de l'application sont loggés dans le fichier     
 
-epic_event_access.log:
+    epic_events.log:  niveau du log(WARNING)
 
-        niveau du log : info   
 
-epic_event_error.log: 
-
-        niveau du log: warning  
-
-information sur  le  [niveau des logs](https://docs.djangoproject.com/fr/4.0/topics/logging/)
+Information sur  le  [niveau des logs](https://docs.djangoproject.com/fr/4.0/topics/logging/)
 
 11. Tests
 

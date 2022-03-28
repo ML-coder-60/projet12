@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-3t=w(3kt3e=8!aqs0i7-7h$f=f1=w^gla7$lmf7rjm@$7^m(7='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1']
 
@@ -177,17 +177,11 @@ LOGGING = {
         },
     },
     'handlers': {
-        'file_error': {
+        'file_logs': {
             'level': 'WARNING',
             'class': 'logging.FileHandler',
             'formatter': 'verbose',
-            'filename': './logs/epic_events_error.log',
-        },
-        'file_access': {
-            'level': 'INFO',
-            'class': 'logging.FileHandler',
-            'formatter': 'verbose',
-            'filename': './logs/epic_events_access.log',
+            'filename': './logs/epic_events.log',
         },
         'console': {
             'level': 'WARNING',
@@ -197,13 +191,7 @@ LOGGING = {
     },
     'loggers': {
         'django': {
-            'handlers': ['file_error', 'console'],
-            'level': 'INFO',
-            'propagate': True,
-        },
-        'django': {
-            'handlers': ['file_access', 'console'],
-            'level': 'INFO',
+            'handlers': ['file_logs', 'console'],
             'propagate': True,
         },
     },
