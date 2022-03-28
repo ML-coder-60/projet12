@@ -146,7 +146,7 @@ Le détail des points d'entrées ce trouve ici =>
 
 10. Logs
 
-les événements de l'application sont loggés dans 2 fichiers     
+Les événements de l'application sont loggés dans 2 fichiers     
 
 epic_event_access.log:
 
@@ -157,5 +157,16 @@ epic_event_error.log:
         niveau du log: warning  
 
 information sur  le  [niveau des logs](https://docs.djangoproject.com/fr/4.0/topics/logging/)
+
+11. Tests
+
+Un suite de tests est disponible dans le dossier  epic_events/tests/ 
+
+Pour exécuter les tests,  depuis le dossier 'epic_events' lancer la commande 
+
+```shell
+pytest -v 
+``` 
+
 
 

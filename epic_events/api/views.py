@@ -45,7 +45,7 @@ class ClientsViewset(MultipleSerializerMixin, ModelViewSet):
     filter_backends = [SearchFilter, DjangoFilterBackend]
     search_fields = ['first_name', 'last_name', 'email', '^name']
 
-    filter_class = ClientFilterSet
+    filterset_class = ClientFilterSet
 
     http_method_names = ['get', 'post', 'head', 'put']
 
@@ -92,7 +92,7 @@ class ContractsViewset(MultipleSerializerMixin, ModelViewSet):
 
     search_fields = ['id', 'client_id__sales_user__username', 'client_id__name', 'amount', 'payment_due']
 
-    filter_class = ContractFilterSet
+    filterset_class = ContractFilterSet
 
     http_method_names = ['get', 'post', 'head', 'put']
 
@@ -191,7 +191,7 @@ class EventsViewset(MultipleSerializerMixin, ModelViewSet):
     filter_backends = [SearchFilter, DjangoFilterBackend]
     search_fields = ['event_date', 'attendees', 'support_user__username', 'contract__client__name', 'contract__id']
 
-    filter_class = EventFilterSet
+    filterset_class = EventFilterSet
 
     http_method_names = ['get', 'head', 'put']
 
