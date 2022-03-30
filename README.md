@@ -13,7 +13,7 @@ _Testé sous Debian 11 - Python 3.9.2 - Django 4.0.3 - DRF 3.13.1 - simplejwt 5.
 
 ## Installation
 
-[**Python 3**](https://wiki.python.org/moin/BeginnersGuide/Download) et [**PostgreSQL**](https://wiki.postgresql.org/wiki/Detailed_installation_guides) sont nécessaire pour le fonctionnement de l’application.
+[**Python 3**](https://wiki.python.org/moin/BeginnersGuide/Download) et [**PostgreSQL**](https://wiki.postgresql.org/wiki/Detailed_installation_guides) sont nécessaires pour le fonctionnement de l’application.
 
 1. Récupérer les sources du projet https://github.com/ML-coder-60/projet12
 
@@ -64,7 +64,7 @@ ALTER ROLE psql_django_account SET timezone TO 'UTC';
 ALTER USER psql_django_account CREATEDB;
 ```
 
-4.2.3  Configuration des du nouveau compte 'psql_django_account'
+4.2.3  Configuration du nouveau compte 'psql_django_account'
 
 ```shell
 GRANT ALL PRIVILEGES ON DATABASE epic_events TO psql_django_account;
@@ -104,13 +104,13 @@ ___
     Seuls les membres de l'équipe de gestion ont accès 
     à la console d'administration de l'application.
 
-    C'est interface permet de gérer les comptes , les clients, les contracts, les événements
-    Le changement des mots de passe est a réaliser par les utilisateurs  depuis API 
+    Cet interface permet de gérer les comptes , les clients, les contracts, les événements
+    Le changement des mots de passe est à réaliser par les utilisateurs  depuis API 
 ___
 
 La page d'administration est disponible depuis 
     
-    http://127.0.0.1:8080/gestion/
+    http://127.0.0.1:8000/gestion/
 
 
 
@@ -146,16 +146,21 @@ Le détail des points d'entrées ce trouve ici =>
 
 10. Logs
 
-Les événements de l'application sont loggés dans le fichier     
+Les événements de l'application sont loggés dans 2 fichiers     
 
-    epic_events.log:  niveau du log(WARNING)
+epic_event_access.log:
 
+        niveau du log : info   
 
-Information sur  le  [niveau des logs](https://docs.djangoproject.com/fr/4.0/topics/logging/)
+epic_event_error.log: 
+
+        niveau du log: warning  
+
+information sur  le  [niveau des logs](https://docs.djangoproject.com/fr/4.0/topics/logging/)
 
 11. Tests
 
-Un suite de tests est disponible dans le dossier  epic_events/tests/ 
+Une suite de tests est disponible dans le dossier  epic_events/tests/ 
 
 Pour exécuter les tests,  depuis le dossier 'epic_events' lancer la commande 
 
